@@ -3,6 +3,7 @@ import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 import { BlurView } from 'expo-blur';
 import { APP_STRINGS } from '../config/appContent';
 import { HomeLoader } from '../components/HomeLoader';
+import { PixelBackdrop } from '../components/PixelBackdrop';
 import { ThreePulseBadge } from '../components/ThreePulseBadge';
 import { TrollVideoModal } from '../components/TrollVideoModal';
 
@@ -12,6 +13,7 @@ export default function HomePage() {
 
   return (
     <View style={styles.screen}>
+      <PixelBackdrop />
       {loading ? <HomeLoader onDone={() => setLoading(false)} /> : null}
       <View style={styles.content}>
         <Text style={styles.title}>{APP_STRINGS.brand}</Text>
@@ -41,6 +43,7 @@ export default function HomePage() {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
+    backgroundColor: '#0d141b',
     paddingTop: 72,
     paddingHorizontal: 14,
     paddingBottom: 130,

@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { BlurView } from 'expo-blur';
 import { gsap } from 'gsap';
+import { Image } from 'expo-image';
 import { APP_STRINGS } from '../config/appContent';
 
 type Props = {
@@ -34,6 +35,11 @@ export function HomeLoader({ onDone }: Props) {
     <BlurView intensity={55} tint="dark" style={styles.container}>
       <Text style={styles.title}>{APP_STRINGS.brand}</Text>
       <Text style={styles.subtitle}>{APP_STRINGS.developmentTag}</Text>
+      <Image
+        source="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMHBsam0yaHpua2VtZjRvaGl3MTBsZ2U2enZkeWg5dGwyempnYWZoOCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/l378a5wVtWNHaDrlS/giphy.gif"
+        contentFit="cover"
+        style={styles.splashGif}
+      />
       <View style={styles.meter}>
         <View style={[styles.meterFill, { width: `${progress}%` }]} />
       </View>
@@ -67,6 +73,14 @@ const styles = StyleSheet.create({
     borderRadius: 999,
     backgroundColor: 'rgba(255,255,255,0.18)',
     overflow: 'hidden',
+  },
+  splashGif: {
+    width: 220,
+    height: 160,
+    borderRadius: 20,
+    marginBottom: 16,
+    borderWidth: 2,
+    borderColor: 'rgba(255,255,255,0.35)',
   },
   meterFill: {
     height: '100%',
