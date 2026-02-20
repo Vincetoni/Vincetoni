@@ -1,9 +1,11 @@
 import { StyleSheet, Text, View } from 'react-native';
+import { PixelBackdrop } from '../components/PixelBackdrop';
 import { RandomGifCard } from '../components/RandomGifCard';
 
 export default function FocusPage() {
   return (
     <View style={styles.screen}>
+      <PixelBackdrop />
       <Text style={styles.heading}>Focus Zone</Text>
       <RandomGifCard pageLabel="focus tab" />
     </View>
@@ -13,6 +15,7 @@ export default function FocusPage() {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
+    backgroundColor: '#0d141b',
     paddingTop: 66,
     paddingBottom: 130,
   },

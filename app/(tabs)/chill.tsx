@@ -1,9 +1,11 @@
 import { StyleSheet, Text, View } from 'react-native';
+import { PixelBackdrop } from '../components/PixelBackdrop';
 import { RandomGifCard } from '../components/RandomGifCard';
 
 export default function ChillPage() {
   return (
     <View style={styles.screen}>
+      <PixelBackdrop />
       <Text style={styles.heading}>Chill Loop</Text>
       <RandomGifCard pageLabel="chill tab" />
     </View>
@@ -13,6 +15,7 @@ export default function ChillPage() {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
+    backgroundColor: '#0d141b',
     paddingTop: 66,
     paddingBottom: 130,
   },

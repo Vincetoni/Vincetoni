@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { gsap } from 'gsap';
 import * as THREE from 'three';
@@ -7,25 +7,31 @@ export function ThreePulseBadge() {
   const [x, setX] = useState(0);
   const [y, setY] = useState(0);
   const [hue, setHue] = useState(185);
-  const tRef = useRef(0);
-  const orbit = useMemo(() => new THREE.Vector3(1, 0, 0), []);
-  const axis = useMemo(() => new THREE.Vector3(0.6, 1, 0.2).normalize(), []);
+  const angleRef = useRef({ value: 0 });
 
   useEffect(() => {
-    const tick = () => {
-      tRef.current += 0.018;
-      orbit.applyAxisAngle(axis, 0.024).normalize();
-      const wobble = new THREE.Vector3(Math.sin(tRef.current), Math.cos(tRef.current * 0.6), 0).multiplyScalar(9);
-      setX(orbit.x * 16 + wobble.x);
-      setY(orbit.y * 16 + wobble.y);
-      setHue(185 + Math.sin(tRef.current) * 24);
-    };
-    gsap.ticker.add(tick);
+    const tween = gsap.to(angleRef.current, {
+      value: Math.PI * 2,
+      duration: 3.2,
+      repeat: -1,
+      ease: 'none',
+      onUpdate: () => {
+        const a = angleRef.current.value;
+        const tx = Math.cos(a) * 16;
+        const ty = Math.sin(a * 1.25) * 14;
+        setX(tx);
+        setY(ty);
+        setHue(185 + Math.sin(a) * 24);
+      },
+      onRepeat: () => {
+        angleRef.current.value = 0;
+      },
+    });
 
     return () => {
-      gsap.ticker.remove(tick);
+      tween.kill();
     };
-  }, [axis, orbit]);
+  }, []);
 
   return (
     <View style={styles.wrap}>
