@@ -1,12 +1,10 @@
-import { useMemo } from 'react';
+import { useState } from 'react';
 import { Image, ImageResolvedAssetSource, ImageSourcePropType, StyleSheet, Text, View } from 'react-native';
 import { BlurView } from 'expo-blur';
 import { APP_STRINGS, BUSY_JOKES } from '../config/appContent';
 import { GIF_MANIFEST } from '../data/gifManifest';
-import { seededNumber } from '../utils/random';
 
 type Props = {
-  seed: string;
   pageLabel: string;
 };
 
@@ -36,9 +34,9 @@ function shapeForAsset(asset: ImageResolvedAssetSource) {
   };
 }
 
-export function RandomGifCard({ seed, pageLabel }: Props) {
-  const gifIndex = useMemo(() => seededNumber(seed, GIF_MANIFEST.length), [seed]);
-  const jokeIndex = useMemo(() => seededNumber(`${seed}-joke`, BUSY_JOKES.length), [seed]);
+export function RandomGifCard({ pageLabel }: Props) {
+  const [gifIndex] = useState(() => Math.floor(Math.random() * GIF_MANIFEST.length));
+  const [jokeIndex] = useState(() => Math.floor(Math.random() * BUSY_JOKES.length));
   const gif = GIF_MANIFEST[gifIndex];
   const source = gif.source as ImageSourcePropType;
   const asset = Image.resolveAssetSource(source);
