@@ -5,7 +5,7 @@ export default function LabPage() {
   return (
     <View style={styles.screen}>
       <Text style={styles.heading}>Meme Lab</Text>
-      <RandomGifCard seed="lab-page" pageLabel="lab tab" />
+      <RandomGifCard pageLabel="lab tab" />
     </View>
   );
 }
