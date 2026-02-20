@@ -5,7 +5,7 @@ export default function FocusPage() {
   return (
     <View style={styles.screen}>
       <Text style={styles.heading}>Focus Zone</Text>
-      <RandomGifCard seed="focus-page" pageLabel="focus tab" />
+      <RandomGifCard pageLabel="focus tab" />
     </View>
   );
 }

@@ -5,7 +5,7 @@ export default function ChillPage() {
   return (
     <View style={styles.screen}>
       <Text style={styles.heading}>Chill Loop</Text>
-      <RandomGifCard seed="chill-page" pageLabel="chill tab" />
+      <RandomGifCard pageLabel="chill tab" />
     </View>
   );
 }
