@@ -17,8 +17,8 @@ export function ThreePulseBadge() {
       ease: 'none',
       onUpdate: () => {
         const a = angleRef.current.value;
-        const tx = Math.cos(a) * 16;
-        const ty = Math.sin(a * 1.25) * 14;
+        const tx = THREE.MathUtils.clamp(Math.cos(a) * 16, -16, 16);
+        const ty = THREE.MathUtils.clamp(Math.sin(a * 1.25) * 14, -14, 14);
         setX(tx);
         setY(ty);
         setHue(185 + Math.sin(a) * 24);
