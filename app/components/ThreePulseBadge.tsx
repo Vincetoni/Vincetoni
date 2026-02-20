@@ -12,17 +12,18 @@ export function ThreePulseBadge() {
   const axis = useMemo(() => new THREE.Vector3(0.6, 1, 0.2).normalize(), []);
 
   useEffect(() => {
-    const cleanup = gsap.ticker.add(() => {
+    const tick = () => {
       tRef.current += 0.018;
       orbit.applyAxisAngle(axis, 0.024).normalize();
       const wobble = new THREE.Vector3(Math.sin(tRef.current), Math.cos(tRef.current * 0.6), 0).multiplyScalar(9);
       setX(orbit.x * 16 + wobble.x);
       setY(orbit.y * 16 + wobble.y);
       setHue(185 + Math.sin(tRef.current) * 24);
-    });
+    };
+    gsap.ticker.add(tick);
 
     return () => {
-      gsap.ticker.remove(cleanup as never);
+      gsap.ticker.remove(tick);
     };
   }, [axis, orbit]);
 

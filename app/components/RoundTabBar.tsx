@@ -23,7 +23,7 @@ export function RoundTabBar({ state, descriptors, navigation }: BottomTabBarProp
           return (
             <Pressable
               key={route.key}
-              onPress={() => navigation.navigate(route.name)}
+              onPress={() => navigation.navigate(route.name as never)}
               style={[styles.item, isHome ? styles.homeItem : styles.smallItem, isFocused && styles.activeItem]}
             >
               <Ionicons name={iconName} size={isHome ? 26 : 18} color="#e9f8ff" />
