@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { Image, ImageResolveAssetSource, ImageSourcePropType, StyleSheet, Text, View } from 'react-native';
+import { Image, ImageResolvedAssetSource, ImageSourcePropType, StyleSheet, Text, View } from 'react-native';
 import { BlurView } from 'expo-blur';
 import { APP_STRINGS, BUSY_JOKES } from '../config/appContent';
 import { GIF_MANIFEST } from '../data/gifManifest';
@@ -10,7 +10,7 @@ type Props = {
   pageLabel: string;
 };
 
-function shapeForAsset(asset: ImageResolveAssetSource) {
+function shapeForAsset(asset: ImageResolvedAssetSource) {
   const ratio = asset.width / asset.height;
   if (ratio > 1.2) {
     return {
